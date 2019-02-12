@@ -38,10 +38,11 @@ public double[] testComplex(int iterations, float num, float inum) {
 
 public void plotSet(int magnitude) {
   double inf = Double.POSITIVE_INFINITY;
-  println(-width/(magnitude*2));
-  for (float x=-width/(magnitude*2); x<width/(magnitude*2); x+=width/(magnitude*2000)) {
+  float scrX = (float) (width/(magnitude*2));
+  float scrY = (float) (height/(magnitude));
+  for (float x=-scrX; x<scrX; x+=scrX/500) {
     //for (float x=-2; x<2; x+=0.002) {
-    for (float y=-height/(magnitude*2); y<height/(magnitude*2); y+=height/(magnitude*2000)) {
+    for (float y=-scrY; y<scrY; y+=scrY/500) {
       //for (float y=-2; y<2; y+=0.002) {
       if (Math.sqrt(x*x+y*y)<=2) {
         double c = testComplex(80,x,y)[0];
@@ -52,7 +53,7 @@ public void plotSet(int magnitude) {
           ellipse((float) x * magnitude,(float) y * magnitude, 1, 1);
         } else {
           int col = coloringNum(x,y);
-          fill(255-(col-6)*8, (col+15)*7,80+(col-10)*4);
+          fill(255-(col-8)*8, (col+14)*7,80+(col-10)*4);
           noStroke();
           ellipse((float) x * magnitude, (float) y * magnitude, 1, 1);
         }
