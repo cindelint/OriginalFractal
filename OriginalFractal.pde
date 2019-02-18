@@ -1,14 +1,16 @@
-int mag;
+int mag, panX, panY;
 
 public void setup() {
   size(1200,800);
   mag = 300;
+  panX = width/2;
+  panY = height/2;
 }
 
 public void draw() {
   noLoop();
   background(100);
-  translate(width/2, height/2);
+  translate(panX, panY);
   plotSet(mag);
   //fill(0);
   //stroke(10);
@@ -18,11 +20,27 @@ public void draw() {
 
 public void keyPressed() {
   println("pressed");
-  mag+=200;
-  redraw();
+  if (key == ' ') {
+    mag+=200;
+    redraw();
+  }
+  switch(keyCode) {
+    case UP: panY -= 100;
+      redraw();
+      break;
+    case DOWN: panY += 100;
+      redraw();
+      break;
+    case LEFT: panX -= 100;
+      redraw();
+      break;
+    case RIGHT: panX += 100;
+      redraw();
+      break;
+  }
 }
 
-public double[] testComplex(int iterations, float num, float inum) {
+public double[] testComplex(int iterations, double num, double inum) {
   //testing for complex numbers in set. c = num + i*inum
   double[] c = new double[2];
   if (iterations == 0) {
@@ -37,12 +55,11 @@ public double[] testComplex(int iterations, float num, float inum) {
 }
 
 public void plotSet(int magnitude) {
-  double inf = Double.POSITIVE_INFINITY;
-  float scrX = (float) (width/(magnitude*2));
-  float scrY = (float) (height/(magnitude));
-  for (float x=-scrX; x<scrX; x+=scrX/500) {
+  double scrX = (double) width/(magnitude*2);
+  double scrY = (double) height/(magnitude*2);
+  for (double x=-scrX; x<scrX; x+=scrX/1000) {
     //for (float x=-2; x<2; x+=0.002) {
-    for (float y=-scrY; y<scrY; y+=scrY/500) {
+    for (double y=-scrY; y<scrY; y+=scrY/1000) {
       //for (float y=-2; y<2; y+=0.002) {
       if (Math.sqrt(x*x+y*y)<=2) {
         double c = testComplex(80,x,y)[0];
@@ -63,14 +80,14 @@ public void plotSet(int magnitude) {
 }
 
 
-public int coloringNum(float num, float inum) {
+public int coloringNum(double num, double inum) {
   //return # of iterations needed to reach 2 in any direction
-  float c = num;
-  float i = inum;
+  double c = num;
+  double i = inum;
   int coloringIterations = 0;
   while (Math.abs(c) <= 5 || Math.abs(i) <= 5) {
     if (coloringIterations < 300) {
-      float oldC = c;
+      double oldC = c;
       c = c * c - i * i + num;
       i = 2 * oldC * i + inum;
       coloringIterations++;
