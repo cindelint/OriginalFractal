@@ -71,11 +71,13 @@ public double[] testComplex(int iterations, double num, double inum) {
 
 public void plotSet(int magnitude, int pX, int pY) {
   translate(width/2+pX, height/2+pY);
-  double scrX = (double) (width+pX)/(magnitude*2);
-  double scrY = (double) (height+pY)/(magnitude*2);
-  for (double x=-scrX; x<scrX; x+=scrX/1000) {
+  double scrX = (double) (width)/(magnitude*2);
+  double shiftX = (double) pX/magnitude;
+  double scrY = (double) (height)/(magnitude*2);
+  double shiftY= (double) pY/magnitude;
+  for (double x=-scrX-shiftX; x<scrX-shiftX; x+=scrX/1000) {
     //for (float x=-2; x<2; x+=0.002) {
-    for (double y=-scrY; y<scrY; y+=scrY/1000) {
+    for (double y=-scrY-shiftY; y<scrY-shiftY; y+=scrY/1000) {
       //for (float y=-2; y<2; y+=0.002) {
       if (Math.sqrt(x*x+y*y)<=2) {
         double c = testComplex(80,x,y)[0];
