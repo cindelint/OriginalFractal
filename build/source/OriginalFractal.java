@@ -19,15 +19,14 @@ int mag, panX, panY;
 public void setup() {
   
   mag = 300;
-  panX = width/2;
-  panY = height/2;
+  panX = 0;
+  panY = 0;
 }
 
 public void draw() {
   noLoop();
   background(100);
-  translate(panX, panY);
-  plotSet(mag);
+  plotSet(mag, panX, panY);
   //fill(0);
   //stroke(10);
   //line(-width/2,0,width/2,0); //x axis
@@ -41,16 +40,16 @@ public void keyPressed() {
     redraw();
   }
   switch(keyCode) {
-    case UP: panY -= 100;
+    case UP: panY += 100;
       redraw();
       break;
-    case DOWN: panY += 100;
+    case DOWN: panY -= 100;
       redraw();
       break;
-    case LEFT: panX -= 100;
+    case LEFT: panX += 100;
       redraw();
       break;
-    case RIGHT: panX += 100;
+    case RIGHT: panX -= 100;
       redraw();
       break;
   }
@@ -70,9 +69,10 @@ public double[] testComplex(int iterations, double num, double inum) {
   return c;
 }
 
-public void plotSet(int magnitude) {
-  double scrX = (double) width/(magnitude*2);
-  double scrY = (double) height/(magnitude*2);
+public void plotSet(int magnitude, int pX, int pY) {
+  translate(width/2+pX, height/2+pY);
+  double scrX = (double) (width+pX)/(magnitude*2);
+  double scrY = (double) (height+pY)/(magnitude*2);
   for (double x=-scrX; x<scrX; x+=scrX/1000) {
     //for (float x=-2; x<2; x+=0.002) {
     for (double y=-scrY; y<scrY; y+=scrY/1000) {
