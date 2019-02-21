@@ -82,7 +82,9 @@ public void plotSet(int magnitude, int pX, int pY) {
       if (Math.sqrt(x*x+y*y)<=2) {
         double c = testComplex(80,x,y)[0];
         double i = testComplex(80,x,y)[1];
-        if (!Double.isInfinite(c) && !Double.isNaN(c) && !Double.isInfinite(i) && !Double.isNaN(i)) {
+        String cS = String.valueOf(c);
+        String iS = String.valueOf(i);
+        if (!cS.equals("Infinity") && !cS.equals("NaN") && !iS.equals("Infinity") && !iS.equals("NaN")) {
           fill(0);
           noStroke();
           ellipse((float) x * magnitude,(float) y * magnitude, 1, 1);
