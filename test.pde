@@ -5,8 +5,8 @@ double nan = inf*zero;
 println(inf);
 println(nan);
 
-String infS = String.valueOf(inf);
-String nanS = String.valueOf(nan);
+String infS = String.format("%f",inf);
+String nanS = Double.toString(nan);
 
 println(infS);
 println(nanS);
