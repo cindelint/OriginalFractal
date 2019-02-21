@@ -86,14 +86,12 @@ public void plotSet(int magnitude, int pX, int pY) {
         String iS = String.valueOf(i);
         if (!cS.equals("Infinity") && !cS.equals("NaN") && !iS.equals("Infinity") && !iS.equals("NaN")) {
           fill(0);
-          noStroke();
-          ellipse((float) x * magnitude,(float) y * magnitude, 1, 1);
         } else {
           int col = coloringNum(x,y);
           fill(255-(col-8)*8, (col+14)*7,80+(col-10)*4);
-          noStroke();
-          ellipse((float) x * magnitude, (float) y * magnitude, 1, 1);
         }
+        noStroke();
+        ellipse((float) x * magnitude, (float) y * magnitude, 1, 1);
       }
     }
   }
