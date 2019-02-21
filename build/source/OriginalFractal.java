@@ -16,8 +16,8 @@ public class OriginalFractal extends PApplet {
 
 int mag, panX, panY;
 
-public void setup() {
-  
+public void Notsetup() {
+  size(1200,800);
   mag = 300;
   panX = 0;
   panY = 0;
@@ -115,7 +115,22 @@ public int coloringNum(double num, double inum) {
   }
   return coloringIterations;
 }
-  public void settings() {  size(1200,800); }
+public void setup() {
+  double ten = 10, zero = 0;
+  double inf = ten/zero;
+  double nan = inf*zero;
+
+  println(inf);
+  println(nan);
+
+  String infS = "" + inf;
+  String nanS = "" + nan;
+
+  println(infS);
+  println(nanS);
+  println(infS.equals("Infinity"));
+  println(nanS.equals("NaN"));
+}
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "OriginalFractal" };
     if (passedArgs != null) {

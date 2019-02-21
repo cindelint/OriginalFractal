@@ -1,6 +1,6 @@
 int mag, panX, panY;
 
-public void setup() {
+public void Notsetup() {
   size(1200,800);
   mag = 300;
   panX = 0;
