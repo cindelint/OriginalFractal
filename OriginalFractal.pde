@@ -1,6 +1,6 @@
 int mag, panX, panY;
 
-public void Notsetup() {
+public void setup() {
   size(1200,800);
   mag = 300;
   panX = 0;
@@ -66,8 +66,8 @@ public void plotSet(int magnitude, int pX, int pY) {
       if (Math.sqrt(x*x+y*y)<=2) {
         double c = testComplex(80,x,y)[0];
         double i = testComplex(80,x,y)[1];
-        String cS = String.valueOf(c);
-        String iS = String.valueOf(i);
+        String cS = "" + c;
+        String iS = "" + i;
         if (!cS.equals("Infinity") && !cS.equals("NaN") && !iS.equals("Infinity") && !iS.equals("NaN")) {
           fill(0);
         } else {

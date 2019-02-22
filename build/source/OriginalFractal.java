@@ -16,8 +16,8 @@ public class OriginalFractal extends PApplet {
 
 int mag, panX, panY;
 
-public void Notsetup() {
-  size(1200,800);
+public void setup() {
+  
   mag = 300;
   panX = 0;
   panY = 0;
@@ -82,8 +82,8 @@ public void plotSet(int magnitude, int pX, int pY) {
       if (Math.sqrt(x*x+y*y)<=2) {
         double c = testComplex(80,x,y)[0];
         double i = testComplex(80,x,y)[1];
-        String cS = String.valueOf(c);
-        String iS = String.valueOf(i);
+        String cS = "" + c;
+        String iS = "" + i;
         if (!cS.equals("Infinity") && !cS.equals("NaN") && !iS.equals("Infinity") && !iS.equals("NaN")) {
           fill(0);
         } else {
@@ -115,22 +115,7 @@ public int coloringNum(double num, double inum) {
   }
   return coloringIterations;
 }
-public void setup() {
-  double ten = 10, zero = 0;
-  double inf = ten/zero;
-  double nan = inf*zero;
-
-  println(inf);
-  println(nan);
-
-  String infS = "" + inf;
-  String nanS = "" + nan;
-
-  println(infS);
-  println(nanS);
-  println(infS.equals("Infinity"));
-  println(nanS.equals("NaN"));
-}
+  public void settings() {  size(1200,800); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "OriginalFractal" };
     if (passedArgs != null) {
